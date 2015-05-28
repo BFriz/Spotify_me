@@ -40,7 +40,7 @@ $(document).ready(function() {
     }).done(function(data, response) {
       $.each(data.albums.items, function (index, item) {
         console.log(item);
-      $('#results').append("<li>" + item.name + "</li>")
+      $('#results').append('<li><audio src="' + item.preview_url + '" controls></audio></li>');
     })
     })
   })
