@@ -38,10 +38,26 @@ $(document).ready(function() {
       type: 'GET',
       url: 'https://api.spotify.com/v1/search?q=' + search +'&type=' + dropdownPick
     }).done(function(data, response) {
-      $.each(data.albums.items, function (index, item) {
+
+      if (dropdownPick === 'track') {
+        $.each(data.tracks.items, function (index, item) {
         console.log(item);
-      $('#results').append('<li><audio src="' + item.preview_url + '" controls></audio></li>');
-    })
+        $('#results').append('<li><audio src="' + item.preview_url + '" controls></audio></li>');
+        })
+      }
+      if (dropdownPick === 'artist') {
+        $.each(data.artists.items, function (index, item) {
+        console.log(item);
+       $('#results').append("<li>" + item.name + "</li>")
+        })
+      }
+      if(dropdownPick === "album"){
+         $.each(data.albums.items, function (index, item) {
+        console.log(item);
+         $('#results').append('<li><image src="' + item.images[1].url + '"></li>')
+      })
+      }
+  //   })
     })
   })
 });
