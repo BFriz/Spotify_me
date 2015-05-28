@@ -11,7 +11,7 @@ var user = [];
 var userInput = $('#search-keyword').val()
  $.ajax({
    type: "GET",
-   url: 'https://api.spotify.com/v1/search?q=coldplay&type=track'
+   url: 'https://api.spotify.com/v1/search?q='+userInput+'&type=artist'
  }).done(function(response){
    console.log(userInput);
    var inputSelect = $('#search-keyword')
