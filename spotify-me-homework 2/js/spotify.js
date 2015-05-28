@@ -1,27 +1,29 @@
-// https://api.spotify.com/v1/search?q=SOMETHINGHERE&type=SOMETHINGHERE
+// // https://api.spotify.com/v1/search?q=SOMETHINGHERE&type=SOMETHINGHERE
 // $(document).ready(function() {
+
+
+// 
 // });
-
 $('#submit').on('click', function(){
-  searching();
-});
+event.preventDefault();
+var user = [];
 
-function searching () {
-  var artists = [];
-
-  $.ajax({
-    type: 'GET',
-    url: 'https://api.spotify.com/v1/search?q='+input+'&type='+searchType
-  }).done(function(response){
-//     info = $('#search-keyword').val()
-// console.log(this)
-// console.log(artists)
-// console.log(searchType)
-//   })
-
-
-// }
-
-
-// var input = $('#search-keyword').val()
-// var searchType = $('#search-type').val()
+var userInput = $('#search-keyword').val()
+ $.ajax({
+   type: "GET",
+   url: 'https://api.spotify.com/v1/search?q=coldplay&type=track'
+ }).done(function(response){
+   console.log(userInput);
+   var inputSelect = $('#search-keyword')
+   inputSelect.empty();
+   $.each(response, function(index, item){
+    console.log(item);
+    if($.inArray(item, userInput) === -1) {
+      user.push(item.region);
+      inputSelect.append('<body><iframe src="https://api.spotify.com/v1/search?q='+userInput+'&type=artist"width="300" height="380" frameborder="0" allowtransparency="true"></iframe></body>');
+    }
+// <iframe src="https://embed.spotify.com/?uri=spotify:track:7B9S4RiRczdw1B9ddjpFe8" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+    // if($)
+   })
+ })
+})
